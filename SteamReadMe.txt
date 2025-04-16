@@ -1,4 +1,4 @@
-[h1]Quasimorph AugmentIndicator[/h1]
+[h1]Quasimorph Augment Indicator[/h1]
 
 
 Adds an indicator to the Corpse Screen if the body contains an augment.

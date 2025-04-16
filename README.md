@@ -1,4 +1,4 @@
-# Quasimorph AugmentIndicator
+# Quasimorph Augment Indicator
 
 ![thumbnail icon](media/thumbnail.png)
 
