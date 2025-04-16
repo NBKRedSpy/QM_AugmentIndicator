@@ -1,0 +1,7 @@
+{
+  "UniqueModName": "NBKRedSpy_AugmentIndicator",
+  "Assemblies": [
+    "AugmentIndicator.dll"
+  ],
+  "Dependencies": []
+}
