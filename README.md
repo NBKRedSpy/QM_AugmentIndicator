@@ -15,3 +15,7 @@ Thanks!
 
 # Source Code
 Source code is available on GitHub at https://github.com/NBKRedSpy/QM_AugmentIndicator
+
+# Change Log
+## 1.1.0
+* Highlights the body part with the augment and/or implant.

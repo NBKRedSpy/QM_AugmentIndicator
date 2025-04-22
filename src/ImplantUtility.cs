@@ -11,12 +11,27 @@ namespace AugmentIndicator
     {
         private static string OriginalCorpseName = "";
 
+
+
         /// <summary>
         /// The list of wound ids for augmentations.  
         /// Used to map the "Wound Id's" back to the augment.  It is one augment to many wound ids 
         /// Does not include the "Human normal" wounds as they are not actually augments.
         /// </summary>
-        private static HashSet<string> AugmentWoundIds = null;
+        private static HashSet<string> _AugmentWoundIds = null;
+
+        public static HashSet<string> AugmentWoundIds
+        {
+            get
+            {
+                if (_AugmentWoundIds == null)
+                {
+                    InitAugmentWoundIds();
+                }
+                return _AugmentWoundIds;
+            }
+        }   
+
 
         public static void UpdateCorpseIcon(CorpseInspectWindow corpseInspectWindow)
         {
@@ -35,12 +50,10 @@ namespace AugmentIndicator
         /// </summary>
         private static void InitAugmentWoundIds()
         {
-            if (AugmentWoundIds != null) return;
-
-            //Debug - augmentation record was found:
+            //Augmentation record example.  Found here:s
             //((Data.Items.GetRecord("cyborg_feet", true) as CompositeItemRecord).Records[0] as AugmentationRecord).WoundSlotIds[0]
 
-            AugmentWoundIds = Data.Items._records.Values
+            _AugmentWoundIds = Data.Items._records.Values
                 .Where(x => x is CompositeItemRecord)
                 .SelectMany(x => (x as CompositeItemRecord).Records)
                 //Note - was looking at "not NormalAug", but I think regular enemy parts are under
@@ -54,7 +67,6 @@ namespace AugmentIndicator
 
         private static bool HasAugOrImplant(CreatureData creatureData)
         {
-            InitAugmentWoundIds();
 
             bool hasImplants = AugmentationSystem.HasAnyInstalledImplants(creatureData);
 

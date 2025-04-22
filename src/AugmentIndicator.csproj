@@ -53,6 +53,9 @@
 			<HintPath>$(ManagedPath)UnityEngine.InputLegacyModule.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+		<Reference Include="UnityEngine.UI">
+		  <HintPath>$(ManagedPath)UnityEngine.UI.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2">
