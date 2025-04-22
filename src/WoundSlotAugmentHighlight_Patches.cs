@@ -43,14 +43,15 @@ namespace AugmentIndicator
             SetHighlightColor(__instance);
         }
 
-        public static void SetHighlightColor(CustomWoundSlot instance)
+        public static bool SetHighlightColor(CustomWoundSlot instance)
         {
             if (instance.IsAmputated || !(instance._installedImplants.Count > 0 || ImplantUtility.AugmentWoundIds.Contains(instance.WoundSlotId)))
             {
-                return;
+                return false;
             }
 
             instance._tooltipHandler._slot.color = Color.yellow;
+            return true;
         }
 
     }
@@ -62,7 +63,13 @@ namespace AugmentIndicator
         {
             foreach (CustomWoundSlot slot in __instance._woundSlots)
             {
-                WoundSlotAugmentHighlight_Patches.SetHighlightColor(slot);
+
+                bool isAugment = WoundSlotAugmentHighlight_Patches.SetHighlightColor(slot);
+
+                if(!isAugment)
+                {
+                    slot._tooltipHandler._slot.color = new Color(0f, 0f, 0f, 0.01f);
+                }
             }
         }
     }

@@ -21,6 +21,11 @@ Source code is available on GitHub at https://github.com/NBKRedSpy/QM_AugmentInd
 
 [h1]Change Log[/h1]
 
+[h2]1.1.1[/h2]
+[list]
+[*]Fix: Slots sometimes incorrectly highlighting non augmented body parts.
+[/list]
+
 [h2]1.1.0[/h2]
 [list]
 [*]Highlights the body part with the augment and/or implant.
