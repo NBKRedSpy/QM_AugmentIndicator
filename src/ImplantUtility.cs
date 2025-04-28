@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace AugmentIndicator
 {
@@ -30,18 +31,26 @@ namespace AugmentIndicator
                 }
                 return _AugmentWoundIds;
             }
-        }   
-
-
+        }
+ 
         public static void UpdateCorpseIcon(CorpseInspectWindow corpseInspectWindow)
         {
-            if (corpseInspectWindow._corpseStorage == null || !HasAugOrImplant(corpseInspectWindow._corpseStorage.CreatureData))
+            bool hasAugOrImplant = HasAugOrImplant(corpseInspectWindow._corpseStorage.CreatureData, 
+                out bool hasImplants);
+
+            InspectWindowHeaderButton bodyPartsButton = corpseInspectWindow._bodyPartsButton;
+
+            if (corpseInspectWindow._corpseStorage == null || !hasAugOrImplant)
             {
-                corpseInspectWindow._bodyPartsButton.Diselect();
+                bodyPartsButton._selectedBorder.color = Color.clear;
+                bodyPartsButton.Diselect();
+
             }
             else
             {
-                corpseInspectWindow._bodyPartsButton.Select();
+                bodyPartsButton.Select();
+                bodyPartsButton._selectedBorder.color = 
+                    hasImplants ? Color.cyan : Color.yellow;
             }
         }
 
@@ -65,10 +74,16 @@ namespace AugmentIndicator
                 .ToHashSet();
         }
 
-        private static bool HasAugOrImplant(CreatureData creatureData)
+        /// <summary>
+        /// Returns true if there are augments or implants on the body.
+        /// </summary>
+        /// <param name="creatureData"></param>
+        /// <param name="hasImplants">True if the body has implants.</param>
+        /// <returns></returns>
+        private static bool HasAugOrImplant(CreatureData creatureData, out bool hasImplants)
         {
 
-            bool hasImplants = AugmentationSystem.HasAnyInstalledImplants(creatureData);
+            hasImplants = AugmentationSystem.HasAnyInstalledImplants(creatureData);
 
 
             //Augmentations:  

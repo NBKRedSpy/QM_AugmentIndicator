@@ -6,8 +6,8 @@ Currently this only searches for Human augments and implants due to the amount o
 
 The indicators are:
 [list]
-[*]The name of the enemy will have a prefix.  A for Augment, I for implant.
-[*]The Body button will have a yellow border.
+[*]The Body button will have a green border if there is an implant present.
+[*]The Body button will have a yellow border if there are augments, but no implants.
 [/list]
 
 [h1]Support[/h1]
@@ -20,6 +20,11 @@ Thanks!
 Source code is available on GitHub at https://github.com/NBKRedSpy/QM_AugmentIndicator
 
 [h1]Change Log[/h1]
+
+[h2]1.2.0[/h2]
+[list]
+[*]Added implant color.
+[/list]
 
 [h2]1.1.1[/h2]
 [list]
