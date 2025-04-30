@@ -35,6 +35,8 @@ namespace AugmentIndicator
  
         public static void UpdateCorpseIcon(CorpseInspectWindow corpseInspectWindow)
         {
+            if (corpseInspectWindow._corpseStorage == null) return;
+
             bool hasAugOrImplant = HasAugOrImplant(corpseInspectWindow._corpseStorage.CreatureData, 
                 out bool hasImplants);
 
