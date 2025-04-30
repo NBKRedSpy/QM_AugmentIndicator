@@ -22,12 +22,13 @@ Source code is available on GitHub at https://github.com/NBKRedSpy/QM_AugmentInd
 [h1]Change Log[/h1]
 
 [h2]1.2.1[/h2]
-[list]
-[*]Fix: Corrected missing null check for corpse window logic:
-[/list]
+
+Fix: Corrected missing null check for corpse window logic:
 
 If an enemy was inspected and then the target was removed, an error would occur behind the scenes.
 The two examples are reviving a corpse and an enemy being killed and their body merged into a body pile.
+
+Thank you to Discord users Archives and "Lord of Change" for reporting this issue.
 
 [h2]1.2.0[/h2]
 [list]
