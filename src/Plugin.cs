@@ -16,13 +16,25 @@ namespace AugmentIndicator
 
         public static ConfigDirectories ConfigDirectories = new ConfigDirectories();
 
-        public static Logger Logger = new Logger();
+        public static ModConfig Config { get; private set; }
+
+        public static Utility.Logger Logger = new();
+
+        private static McmConfiguration McmConfiguration;
 
         [Hook(ModHookType.AfterConfigsLoaded)]
         public static void AfterConfig(IModContext context)
         {
+
+            Directory.CreateDirectory(ConfigDirectories.ModPersistenceFolder);
+            Config = ModConfig.LoadConfig(ConfigDirectories.ConfigPath, Logger);
+
+            ImplantUtility.OnlyCyberAugs = Config.OnlyCyberAugs;
+
+            McmConfiguration = new McmConfiguration(Config, Logger);
+            McmConfiguration.TryConfigure();
+
             new Harmony("NBKRedSpy_" + ConfigDirectories.ModAssemblyName).PatchAll();
         }
-     
     }
 }

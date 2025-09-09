@@ -32,7 +32,14 @@ namespace AugmentIndicator
                 return _AugmentWoundIds;
             }
         }
- 
+
+
+        /// <summary>
+        /// If true, only cybernetic augmentations will be shown with the indicator.
+        /// Otherwise, will be all but "normal" augments, which are actually just regular human body parts.
+        /// </summary>
+        public static bool OnlyCyberAugs { get; set; }
+
         public static void UpdateCorpseIcon(CorpseInspectWindow corpseInspectWindow)
         {
             if (corpseInspectWindow._corpseStorage == null) return;
@@ -59,9 +66,9 @@ namespace AugmentIndicator
         /// <summary>
         /// Inits the id lookup for all wound types that are augmentations.  This is from the game's Data.
         /// </summary>
-        private static void InitAugmentWoundIds()
+        public static void InitAugmentWoundIds()
         {
-            //Augmentation record example.  Found here:s
+            //Augmentation record example.  Found here:
             //((Data.Items.GetRecord("cyborg_feet", true) as CompositeItemRecord).Records[0] as AugmentationRecord).WoundSlotIds[0]
 
             _AugmentWoundIds = Data.Items._records.Values
@@ -70,7 +77,14 @@ namespace AugmentIndicator
                 //Note - was looking at "not NormalAug", but I think regular enemy parts are under
                 //  PossessedAug, FaunaAugment, etc.
                 //Kept getting notifications of low tier Quasi augments.
-                .Where(x => x is AugmentationRecord aug && aug.Categories.Contains("CyberAug"))
+                .Where(x => 
+                    x is AugmentationRecord aug  &&
+                        (
+                            (OnlyCyberAugs && aug.Categories.Contains("CyberAug")) || 
+                            (!OnlyCyberAugs && !aug.Categories.Contains("NormalAug"))
+                        )
+                    )
+                        
                 //.Where(x => x is AugmentationRecord aug && !aug.Categories.Contains("NormalAug"))
                 .SelectMany(x => ((AugmentationRecord)x).WoundSlotIds)
                 .ToHashSet();

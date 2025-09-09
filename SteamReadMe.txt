@@ -2,13 +2,42 @@
 
 
 Adds an indicator to the Corpse Screen if the body contains an augment.
-Currently this only searches for Human augments and implants due to the amount of junk Quasimorph augmentations on enemies.
+
+By default will only show Cybernetic augments and implants, but can be configured to indicate all types.  See the configuration section.
 
 The indicators are:
 [list]
 [*]The Body button will have a green border if there is an implant present.
 [*]The Body button will have a yellow border if there are augments, but no implants.
 [/list]
+
+[h1]Configuration[/h1]
+
+[h2]MCM[/h2]
+
+This mod supports the Mod Configuration Menu. The values can be set with the "Mods" button, or directly in the configuration file.
+
+[h2]Config File[/h2]
+
+The configuration file will be created on the first game run and can be found at [i]%AppData%\..\LocalLow\Magnum Scriptum Ltd\Quasimorph_ModConfigs\MiniMapMoveCamera\config.json[/i].
+[table]
+[tr]
+[td]Name
+[/td]
+[td]Default
+[/td]
+[td]Description
+[/td]
+[/tr]
+[tr]
+[td]OnlyCyberAugs
+[/td]
+[td]false
+[/td]
+[td]Only show cybernetic augmentations.
+[/td]
+[/tr]
+[/table]
 
 [h1]Support[/h1]
 
@@ -20,6 +49,12 @@ Thanks!
 Source code is available on GitHub at https://github.com/NBKRedSpy/QM_AugmentIndicator
 
 [h1]Change Log[/h1]
+
+[h2]1.3.0[/h2]
+[list]
+[*]Added configuration option OnlyCyberAugs.  Defaults to enabled.
+[*]Added MCM
+[/list]
 
 [h2]1.2.1[/h2]
 
